@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "nadia": {
+      "commandName": "Project",
+      "remoteDebugEnabled": true,
+      "remoteDebugMachine": "win2k22:4026",
+      "authenticationMode": "Windows",
+      "nativeDebugging": true
+    }
+  }
+}
