@@ -14,7 +14,8 @@ public class DisablePagingFile : IPreset
     public void Run()
     {
         using var subkey = Registry.MachineSystem.RootKey.OpenSubKey(
-            @"ControlSet001\Control\Session Manager\Memory Management"
+            @"ControlSet001\Control\Session Manager\Memory Management",
+            true
         );
         if (subkey == null)
         {

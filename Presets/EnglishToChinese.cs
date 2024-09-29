@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace nadia.Presets;
 
@@ -29,10 +30,18 @@ public class EnglishToChinese : IAsyncPreset
 
         await IsoUtils.ExtractLanguagePacks(languagePacks, LofIso, LanguagePackDir);
 
-        DismUtils.AddLanguagePacks(MountDir, LanguagePackDir, languagePacks);
-
-        await DismUtils.SetDefaultLanguage(MountDir, "zh-CN");
-
-        DismUtils.RemoveLanguagePackages(MountDir, "en-US");
+        try
+        {
+            DismUtils.AddPackages(
+                MountDir,
+                languagePacks.Select((i) => Path.Join(LanguagePackDir, i)).ToArray()
+            );
+            await DismUtils.SetDefaultLanguage(MountDir, "zh-CN");
+            DismUtils.RemoveLanguagePackages(MountDir, "en-US");
+        }
+        catch (Exception ex)
+        {
+            Log.Warning("failed to finish language setup", ex);
+        }
     }
 }
