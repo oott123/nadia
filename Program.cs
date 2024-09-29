@@ -112,6 +112,9 @@ class Program
             new DisableSwapFile { Registry = registry }.Run();
             new DisableHibernation { Registry = registry }.Run();
             new DisableWindowArrangement { Registry = registry }.Run();
+            new DisableVulnerableDriverBlocklist { Registry = registry }.Run();
+            new AllowExecutionPowershell { Registry = registry }.Run();
+            new RealTimeIsUniversal { Registry = registry }.Run();
 
             registry.SaveRegistry();
 
