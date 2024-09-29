@@ -107,6 +107,11 @@ class Program
             new Tiny11Core { MountDir = mountDir, Registry = registry }.Run();
             new SkipFirstLogonAnimation { Registry = registry }.Run();
             new CleanupXboxGameBar { Registry = registry }.Run();
+            new DisableSmartScreen { Registry = registry }.Run();
+            new DisablePagingFile { Registry = registry }.Run();
+            new DisableSwapFile { Registry = registry }.Run();
+            new DisableHibernation { Registry = registry }.Run();
+            new DisableWindowArrangement { Registry = registry }.Run();
 
             registry.SaveRegistry();
 
