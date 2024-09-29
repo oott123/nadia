@@ -1,0 +1,9 @@
+sel disk 0
+clean all
+convert gpt noerr
+create part efi size=500
+format fs=fat quick
+assign letter S
+create part primary
+format fs=ntfs quick
+assign letter W

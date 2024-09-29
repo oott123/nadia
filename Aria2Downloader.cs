@@ -54,11 +54,7 @@ namespace Nadia
 
         private void StartProcess()
         {
-            var aria2 = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),
-                "Tools",
-                "aria2c.exe"
-            );
+            var aria2 = Path.Combine(Directory.GetCurrentDirectory(), "Tools", "aria2c.exe");
             var startInfo = new ProcessStartInfo
             {
                 Arguments =
