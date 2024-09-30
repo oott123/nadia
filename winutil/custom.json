@@ -16,6 +16,14 @@
       {
         "Name": "webthreatdefsvc",
         "StartupType": "Disabled"
+      },
+      {
+        "Name": "webthreatdefusersvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "WpnUserService",
+        "StartupType": "Disabled"
       }
     ]
   },
@@ -62,6 +70,10 @@
         "StartupType": "Disabled"
       },
       {
+        "Name": "SDRSVC",
+        "StartupType": "Disabled"
+      },
+      {
         "Name": "WSearch",
         "StartupType": "Disabled"
       },
@@ -95,6 +107,10 @@
       },
       {
         "Name": "DusmSvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "OneSyncSvc",
         "StartupType": "Disabled"
       }
     ]
