@@ -173,7 +173,13 @@ class Program
                         "winutil",
                         "custom.json"
                     ),
-                    new string[] { "FixOOBEInput", "ImFeelingSafe", "GamingOnly" },
+                    new string[]
+                    {
+                        "FixOOBEInput",
+                        "ImFeelingSafe",
+                        "DumberNotification",
+                        "GamingOnly",
+                    },
                     registry
                 );
             }

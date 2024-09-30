@@ -2,8 +2,8 @@
   "FixOOBEInput": {
     "service": [
       {
-        "Name": "TabletInputService",
-        "StartupType": "AutomaticDelayedStart"
+        "Name": "AutomaticDelayedStart",
+        "StartupType": "Manual"
       }
     ]
   },
@@ -19,8 +19,28 @@
       }
     ]
   },
+  "DumberNotification": {
+    "registry": [
+      {
+        "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Notifications\\Settings\\Windows.ActionCenter.SmartOptOut",
+        "Name": "Enabled",
+        "Value": "0",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKCU:\\\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+        "Name": "StartShownOnUpgrade",
+        "Value": "1",
+        "Type": "DWord"
+      }
+    ]
+  },
   "GamingOnly": {
     "service": [
+      {
+        "Name": "ShellHWDetection",
+        "StartupType": "Disabled"
+      },
       {
         "Name": "lfsvc",
         "StartupType": "Disabled"
@@ -38,23 +58,11 @@
         "StartupType": "Manual"
       },
       {
-        "Name": "ShellHWDetection",
-        "StartupType": "Disabled"
-      },
-      {
         "Name": "SSDPSRV",
         "StartupType": "Disabled"
       },
       {
-        "Name": "pcasvc",
-        "StartupType": "Manual"
-      },
-      {
         "Name": "WSearch",
-        "StartupType": "Disabled"
-      },
-      {
-        "Name": "WpnService",
         "StartupType": "Disabled"
       },
       {
@@ -62,8 +70,16 @@
         "StartupType": "Disabled"
       },
       {
-        "Name": "camsvc",
+        "Name": "WpnService",
         "StartupType": "Disabled"
+      },
+      {
+        "Name": "pcasvc",
+        "StartupType": "Manual"
+      },
+      {
+        "Name": "camsvc",
+        "StartupType": "Manual"
       },
       {
         "Name": "cdpsvc",
@@ -74,11 +90,11 @@
         "StartupType": "Disabled"
       },
       {
-        "Name": "DusmSvc",
+        "Name": "RmSvc",
         "StartupType": "Disabled"
       },
       {
-        "Name": "RmSvc",
+        "Name": "DusmSvc",
         "StartupType": "Disabled"
       }
     ]
