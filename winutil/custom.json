@@ -1,0 +1,90 @@
+{
+  "FixOOBEInput": {
+    "service": [
+      {
+        "Name": "TabletInputService",
+        "StartupType": "AutomaticDelayedStart"
+      }
+    ]
+  },
+  "ImFeelingSafe": {
+    "service": [
+      {
+        "Name": "SecurityHealthService",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "webthreatdefsvc",
+        "StartupType": "Disabled"
+      }
+    ]
+  },
+  "GamingOnly": {
+    "service": [
+      {
+        "Name": "lfsvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "iphlpsvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "BthAvctpSvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "Spooler",
+        "StartupType": "Manual"
+      },
+      {
+        "Name": "pcasvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "ShellHWDetection",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "SSDPSRV",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "pcasvc",
+        "StartupType": "Manual"
+      },
+      {
+        "Name": "WSearch",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "WpnService",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "WLANSVC",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "camsvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "cdpsvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "InventorySvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "DusmSvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "RmSvc",
+        "StartupType": "Disabled"
+      }
+    ]
+  }
+}

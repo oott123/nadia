@@ -18,5 +18,9 @@ public class DisableSmartScreen : IPreset
             "EnableSmartScreen",
             "0"
         );
+        RegistryUtils.RegDelete(
+            Registry.MachineSoftware,
+            @"Microsoft\Windows\CurrentVersion\Run\SecurityHealth"
+        );
     }
 }

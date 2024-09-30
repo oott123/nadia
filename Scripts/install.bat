@@ -16,6 +16,9 @@ echo .
 echo --------- Creating Boot Loader ---------
 echo .
 bcdboot W:\Windows /s S:
+echo Enable EMS
+bcdedit /store S:\EFI\Microsoft\Boot\BCD /ems {default} on
+bcdedit /store S:\EFI\Microsoft\Boot\BCD /emssettings EMSPORT:1 EMSBAUDRATE:9600
 echo .
 echo --------- Finished ---------
 echo Press any key to reboot!

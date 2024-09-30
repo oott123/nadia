@@ -115,14 +115,14 @@ namespace nadia
             }
         }
 
-        public static void AddLanguagePacks(string mount, string src, string[] languagePacks)
+        public static void AddPackages(string mount, string[] packagePaths)
         {
             using (var session = DismApi.OpenOfflineSession(mount))
             {
-                foreach (var s in languagePacks)
+                foreach (var s in packagePaths)
                 {
-                    Log.Information($"adding {s}");
-                    DismApi.AddPackage(session, Path.GetFullPath($"{src}\\{s}"), false, false);
+                    Log.Information($"adding package {Path.GetFileName(s)}");
+                    DismApi.AddPackage(session, Path.GetFullPath(s), false, false);
                 }
             }
         }

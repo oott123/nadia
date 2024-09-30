@@ -281,6 +281,12 @@ internal class Tiny11Core : IPreset
             "ProtectYourPC",
             "3"
         );
+        RegistryUtils.RegSetValue(
+            Registry.NtUser,
+            @"Software\Microsoft\Windows\CurrentVersion\CloudExperienceHost\Intent\PersonalDataExport",
+            "PDEShown",
+            "2"
+        );
 
         // Disabling Reserved Storage
         RegistryUtils.RegSetValue(

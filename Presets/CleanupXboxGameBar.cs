@@ -35,13 +35,13 @@ public class CleanupXboxGameBar : IPreset
         foreach (var item in new string[] { "ms-gamebar", "ms-gamebarservices" })
         {
             using var subkey =
-                Registry.MachineSoftware.RootKey.OpenSubKey($"Classes\\{item}")
+                Registry.MachineSoftware.RootKey.OpenSubKey($"Classes\\{item}", true)
                 ?? Registry.MachineSoftware.RootKey.CreateSubKey($"Classes\\{item}");
             subkey.SetValue("", $"URL:{item}");
             subkey.SetValue("URL Protocol", " ");
             subkey.SetValue("NoOpenWith", " ");
             using var openSubKey =
-                subkey.OpenSubKey(@"shell\open\command")
+                subkey.OpenSubKey(@"shell\open\command", true)
                 ?? subkey.CreateSubKey(@"shell\open\command");
             openSubKey.SetValue("", @"\System32\systray.exe");
         }

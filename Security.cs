@@ -85,7 +85,7 @@ namespace nadia
             //setPrivilege(SE_TAKE_OWNERSHIP_NAME, true);
 
             // Set the owner in the object's security descriptor.
-            SetNamedSecurityInfo(
+            var result = SetNamedSecurityInfo(
                 name,
                 type,
                 SECURITY_INFORMATION.OWNER_SECURITY_INFORMATION,
@@ -94,12 +94,16 @@ namespace nadia
                 IntPtr.Zero,
                 IntPtr.Zero
             );
+            if (result != 0)
+            {
+                throw new System.ComponentModel.Win32Exception(result);
+            }
 
             // Disable the SE_TAKE_OWNERSHIP_NAME privilege.
             //setPrivilege(SE_TAKE_OWNERSHIP_NAME, false);
 
             // Modify the object's DACL,
-            SetNamedSecurityInfo(
+            result = SetNamedSecurityInfo(
                 name,
                 type,
                 SECURITY_INFORMATION.DACL_SECURITY_INFORMATION,
@@ -108,6 +112,10 @@ namespace nadia
                 acl,
                 IntPtr.Zero
             );
+            if (result != 0)
+            {
+                throw new System.ComponentModel.Win32Exception(result);
+            }
 
             FreeSid(sidAdmin);
             LocalFree(acl);

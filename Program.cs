@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using DiscUtils.Iso9660;
@@ -12,6 +13,7 @@ using nadia.Presets;
 using ProcessPrivileges;
 using Serilog;
 using ShellProgressBar;
+using static nadia.WinUtilTweakService;
 
 namespace Nadia;
 
@@ -60,6 +62,10 @@ class Program
 
         try
         {
+            var mountDir = @"build\windows";
+            var wim = @"build\windows11_ltsc_26100.1.wim";
+            var outWim = @"build\nadia_win11_ltsc_26100.wim";
+
             using var privilegeEnabler = new PrivilegeEnabler(
                 Process.GetCurrentProcess(),
                 [Privilege.TakeOwnership, Privilege.Restore, Privilege.Backup]
@@ -69,13 +75,9 @@ class Program
             await IsoUtils.ExtractFromIso(
                 "downloads\\windows11_ltsc_26100.1.iso",
                 "sources\\install.wim",
-                "build\\windows11_ltsc_26100.1.wim"
+                wim
             );
             DismApi.Initialize(DismLogLevel.LogErrorsWarningsInfo);
-
-            var mountDir = @"build\windows";
-            var wim = @"build\windows11_ltsc_26100.1.wim";
-            var outWim = @"build\nadia_win11_ltsc_26100.wim";
 
             // 1. Windows 11 Enterprise LTSC
             // 2. Windows 11 IoT Enterprise LTSC
@@ -97,32 +99,95 @@ class Program
                 }
             ).RunAsync();
 
+            var updateDir = "updates";
+            if (Directory.Exists(updateDir))
+            {
+                Log.Information("installing updates");
+                var updateFiles = Directory.EnumerateFiles(
+                    updateDir,
+                    "*.msu",
+                    new EnumerationOptions { RecurseSubdirectories = true }
+                );
+                DismUtils.AddPackages(mountDir, updateFiles.ToArray());
+            }
+            else
+            {
+                Log.Information("unable to find updates directory, skipping");
+            }
+
             new RemoveBloatedPackagesTiny11Core { MountDir = mountDir }.Run();
 
             var registry = OfflineRegistry.MountRegistry(mountDir);
+            try
+            {
+                new RemoveWindowsDefender { MountDir = mountDir, Registry = registry }.Run();
+                new RemoveEdge { MountDir = mountDir, Registry = registry }.Run();
+                new RemoveOneDrive { MountDir = mountDir }.Run();
+                new Tiny11Core { MountDir = mountDir, Registry = registry }.Run();
+                new SkipFirstLogonAnimation { Registry = registry }.Run();
+                new CleanupXboxGameBar { Registry = registry }.Run();
+                new DisableSmartScreen { Registry = registry }.Run();
+                new DisablePagingFile { Registry = registry }.Run();
+                new DisableSwapFile { Registry = registry }.Run();
+                new DisableHibernation { Registry = registry }.Run();
+                new DisableWindowArrangement { Registry = registry }.Run();
+                new DisableVulnerableDriverBlocklist { Registry = registry }.Run();
+                new AllowExecutionPowershell { Registry = registry }.Run();
+                new RealTimeIsUniversal { Registry = registry }.Run();
+                new DetailedBsod { Registry = registry }.Run();
+                new DisableStorageSense { Registry = registry }.Run();
+                new DisableWindowsSearch { Registry = registry }.Run();
 
-            new RemoveWindowsDefender { MountDir = mountDir, Registry = registry }.Run();
-            new RemoveEdge { MountDir = mountDir, Registry = registry }.Run();
-            new RemoveOneDrive { MountDir = mountDir }.Run();
-            new Tiny11Core { MountDir = mountDir, Registry = registry }.Run();
-            new SkipFirstLogonAnimation { Registry = registry }.Run();
-            new CleanupXboxGameBar { Registry = registry }.Run();
-            new DisableSmartScreen { Registry = registry }.Run();
-            new DisablePagingFile { Registry = registry }.Run();
-            new DisableSwapFile { Registry = registry }.Run();
-            new DisableHibernation { Registry = registry }.Run();
-            new DisableWindowArrangement { Registry = registry }.Run();
-            new DisableVulnerableDriverBlocklist { Registry = registry }.Run();
-            new AllowExecutionPowershell { Registry = registry }.Run();
-            new RealTimeIsUniversal { Registry = registry }.Run();
+                WinUtil.ApplyTweaks(
+                    Path.Join(
+                        Assembly.GetExecutingAssembly().Location,
+                        "..",
+                        "winutil",
+                        "tweaks.json"
+                    ),
+                    new string[]
+                    {
+                        "WPFTweaksAH",
+                        "WPFTweaksConsumerFeatures",
+                        "WPFTweaksDVR",
+                        "WPFTweaksHiber",
+                        "WPFTweaksLoc",
+                        "WPFTweaksServices",
+                        "WPFTweaksTele",
+                        "WPFTweaksWifi",
+                        "WPFTweaksDisplay",
+                        "WPFTweaksDeleteTempFiles",
+                        "WPFTweaksEndTaskOnTaskbar",
+                        "WPFTweaksIPv46",
+                        "WPFTweaksTeredo",
+                        "WPFTweaksDisableBGapps",
+                        "WPFTweaksRemoveCopilot",
+                    },
+                    registry
+                );
 
-            registry.SaveRegistry();
+                WinUtil.ApplyTweaks(
+                    Path.Join(
+                        Assembly.GetExecutingAssembly().Location,
+                        "..",
+                        "winutil",
+                        "custom.json"
+                    ),
+                    new string[] { "FixOOBEInput", "ImFeelingSafe", "GamingOnly" },
+                    registry
+                );
+            }
+            finally
+            {
+                registry.SaveRegistry();
+            }
 
             new CleanupSxsTiny11Core { MountDir = mountDir }.Run();
 
             await DismUtils.CleanupImage(mountDir);
             DismUtils.UnmountWim(mountDir, true);
             await DismUtils.RebuildImage(wim, outWim, wimIndex);
+            File.Delete(wim);
         }
         finally
         {
