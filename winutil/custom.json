@@ -38,10 +38,6 @@
         "StartupType": "Manual"
       },
       {
-        "Name": "pcasvc",
-        "StartupType": "Disabled"
-      },
-      {
         "Name": "ShellHWDetection",
         "StartupType": "Disabled"
       },
