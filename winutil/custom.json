@@ -28,7 +28,7 @@
         "Type": "DWord"
       },
       {
-        "Path": "HKCU:\\\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+        "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
         "Name": "StartShownOnUpgrade",
         "Value": "1",
         "Type": "DWord"
