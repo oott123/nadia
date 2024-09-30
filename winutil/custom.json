@@ -2,8 +2,8 @@
   "FixOOBEInput": {
     "service": [
       {
-        "Name": "AutomaticDelayedStart",
-        "StartupType": "Manual"
+        "Name": "TextInputManagementService",
+        "StartupType": "AutomaticDelayedStart"
       }
     ]
   },
