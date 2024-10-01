@@ -115,6 +115,11 @@ public static class RegistryUtils
             }
             else
             {
+                if (start == 10)
+                {
+                    def.SetValue("DelayedAutostart", 1, RegistryValueKind.DWord);
+                    start = 2;
+                }
                 def.SetValue("Start", start, RegistryValueKind.DWord);
             }
         }

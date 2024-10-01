@@ -159,7 +159,7 @@ public record class WinUtilTweakService
                         }
                         else if (item.StartupType == "AutomaticDelayedStart")
                         {
-                            type = 6;
+                            type = 10;
                         }
                         else
                         {

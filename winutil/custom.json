@@ -43,6 +43,22 @@
       }
     ]
   },
+  "OfflineOOBE": {
+    "registry": [
+      {
+        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\OOBE\\NDUP",
+        "Name": "EnableExpeditedUpdate",
+        "Value": "0",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CloudExperienceHost\\Intent\\PersonalDataExport",
+        "Name": "PDEShown",
+        "Value": "2",
+        "Type": "DWord"
+      }
+    ]
+  },
   "GamingOnly": {
     "service": [
       {

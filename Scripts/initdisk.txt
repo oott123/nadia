@@ -1,5 +1,5 @@
 sel disk 0
-clean all
+clean
 convert gpt noerr
 create part efi size=500
 format fs=fat quick

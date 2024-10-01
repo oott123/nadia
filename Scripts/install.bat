@@ -1,5 +1,7 @@
 @echo off
 cd /D "%~dp0"
+echo This tool will wipe your first disk and install
+pause
 echo .
 echo --------- Cleaning Up Disk ---------
 echo .
@@ -21,6 +23,6 @@ bcdedit /store S:\EFI\Microsoft\Boot\BCD /ems {default} on
 bcdedit /store S:\EFI\Microsoft\Boot\BCD /emssettings EMSPORT:1 EMSBAUDRATE:9600
 echo .
 echo --------- Finished ---------
-echo Press any key to reboot!
+echo Press any key to reboot
 pause
 wpeutil reboot
