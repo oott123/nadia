@@ -27,10 +27,10 @@ class Program
             {
                 Url =
                 [
-                    "https://drive.massgrave.dev/26100.1.240331-1435.ge_release_CLIENT_ENTERPRISES_OEM_x64FRE_en-us.iso",
+                    "https://drive.massgrave.dev/X23-81951_26100.1742.240906-0331.ge_release_svc_refresh_CLIENT_ENTERPRISES_OEM_x64FRE_en-us.iso",
                 ],
-                FileName = "windows11_ltsc_26100.1.iso",
-                Hash = "aaa4bd3254c1af5f9ce07f50db68fdead7a305878f2425c059ecd6b062a855b3",
+                FileName = "windows11_ltsc_26100.1742.iso",
+                Hash = "4f59662a96fc1da48c1b415d6c369d08af55ddd64e8f1c84e0166d9e50405d7a",
             },
             new()
             {
@@ -188,6 +188,7 @@ class Program
                 registry.SaveRegistry();
             }
 
+            new BlockSdxHost { MountDir = mountDir }.Run();
             new CleanupSxsTiny11Core { MountDir = mountDir }.Run();
 
             await DismUtils.CleanupImage(mountDir);
