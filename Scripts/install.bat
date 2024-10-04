@@ -10,7 +10,7 @@ echo .
 echo --------- Deploying Windows Image ---------
 echo .
 echo [*] Apply Image
-dism /apply-image /imagefile:G:\nadia-build\build\nadia_win11_ltsc_26100.wim /index:1 /applydir:W:\
+dism /apply-image /imagefile:G:\nadia-build\build\nadia_win11_ltsc_26100.1742.wim /index:1 /applydir:W:\
 echo .
 echo [*] Add Drivers
 dism /image:W:\ /Add-Driver /Driver:%cd%\drivers /Recurse

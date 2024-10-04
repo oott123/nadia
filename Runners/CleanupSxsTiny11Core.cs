@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Serilog;
 
-namespace nadia.Presets;
+namespace nadia.Runners;
 
-public class CleanupSxsTiny11Core : IPreset
+public class CleanupSxsTiny11Core : BaseRunner
 {
-    public required string MountDir;
-
-    public void Run()
+    public override async Task Run(JObject? args)
     {
         var src = Path.Join(MountDir, "Windows", "WinSxS");
         var srcBackup = Path.Join(MountDir, "Windows", "WinSxS_back");

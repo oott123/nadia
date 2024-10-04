@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Dism;
+using Newtonsoft.Json.Linq;
 using Serilog;
 
-namespace nadia.Presets;
+namespace nadia.Runners;
 
-public class RemoveBloatedPackagesTiny11Core : IPreset
+public class RemoveBloatedPackagesTiny11Core : BaseRunner
 {
-    public required string MountDir;
-
-    public void Run()
+    public override async Task Run(JObject? args)
     {
         using var session = DismApi.OpenOfflineSession(MountDir);
         var packages = DismApi.GetPackages(session);

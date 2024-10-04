@@ -15,6 +15,9 @@ namespace nadia
 
         public DismProgressBar(string message)
         {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
             progressBar = new ProgressBar(
                 100,
                 message,

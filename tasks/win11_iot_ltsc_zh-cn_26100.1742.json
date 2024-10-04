@@ -1,0 +1,147 @@
+{
+  "WorkDir": "C:\\work\\nadia-build",
+  "Steps": [
+    {
+      "Task": "DownloadAssets",
+      "Args": {
+        "Assets": [
+          {
+            "Url": [
+              "https://drive.massgrave.dev/zh-cn_windows_11_enterprise_ltsc_2024_x64_dvd_cff9cd2d.iso"
+            ],
+            "Filename": "windows11_ltsc_26100.1742_zh-cn.iso",
+            "Hash": "7da5ae212783d9a68d1dff5c9e0019713b47ad950b507d6920bfc3d39ff01ddf"
+          },
+          {
+            "Url": [
+              "https://drive.massgrave.dev/26100.1.240331-1435.ge_release_amd64fre_CLIENT_LOF_PACKAGES_OEM.iso"
+            ],
+            "Filename": "windows11_ltsc_client_lof_26100.1.iso",
+            "Hash": "fdbd87c2cd69ba84ef2ea69d5b468938355d0d634b7de7a1988480f94713a738"
+          },
+          {
+            "Url": [
+              "https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.262-2/virtio-win-0.1.262.iso"
+            ],
+            "Filename": "virtio-win-0.1.262.iso",
+            "Hash": "bdc2ad1727a08b6d8a59d40e112d930f53a2b354bdef85903abaad896214f0a3"
+          }
+        ]
+      }
+    },
+    {
+      "Task": "ExtractWim",
+      "Args": {
+        "Iso": "downloads\\windows11_ltsc_26100.1742_zh-cn.iso",
+        "Wim": "build\\windows11_ltsc_26100.1742_zh-cn.wim"
+      }
+    },
+    {
+      "Task": "MountWim",
+      "Args": {
+        "Wim": "build\\windows11_ltsc_26100.1742_zh-cn.wim",
+        "Image": "Windows 11 企业版 LTSC"
+      }
+    },
+    {
+      "Task": "EnglishToChinese",
+      "Skip": true,
+      "Args": {
+        "LofIso": "downloads\\windows11_ltsc_client_lof_26100.1.iso"
+      }
+    },
+    {
+      "Task": "ApplyVirtioDrivers",
+      "Skip": true,
+      "Args": {
+        "Iso": "downloads\\virtio-win-0.1.262.iso"
+      }
+    },
+    {
+      "Task": "ApplyUpdates",
+      "Args": {
+        "Dir": "updates"
+      }
+    },
+    {
+      "Task": "SetEdition",
+      "Args": {
+        "Sku": "IoTEnterpriseS"
+      }
+    },
+
+    { "Task": "RemoveBloatedPackagesTiny11Core" },
+
+    { "Task": "MountRegistry" },
+
+    { "Task": "Tiny11Core" },
+    { "Task": "CleanupXboxGameBar" },
+    { "Task": "RemoveWindowsDefender" },
+    { "Task": "RemoveEdge" },
+    { "Task": "RemoveOneDrive" },
+    { "Task": "DisableSmartScreen" },
+    { "Task": "DisablePagingFile" },
+
+    {
+      "Task": "ApplyWinUtils",
+      "Args": {
+        "Definition": "tweaks.json",
+        "Tweaks": [
+          "WPFTweaksAH",
+          "WPFTweaksConsumerFeatures",
+          "WPFTweaksDVR",
+          "WPFTweaksHiber",
+          "WPFTweaksLoc",
+          "WPFTweaksServices",
+          "WPFTweaksTele",
+          "WPFTweaksWifi",
+          "WPFTweaksDisplay",
+          "WPFTweaksIPv46",
+          "WPFTweaksTeredo",
+          "WPFTweaksDisableBGapps",
+          "WPFTweaksRemoveCopilot"
+        ]
+      }
+    },
+    {
+      "Task": "ApplyWinUtils",
+      "Args": {
+        "Definition": "custom.json",
+        "Tweaks": [
+          "FixOOBEInput",
+          "ImFeelingSafe",
+          "DumberNotification",
+          "OfflineOOBE",
+          "EndTaskOnTaskbar",
+          "GamingOnly",
+          "AllowExecutionPowershell",
+          "DetailedBsod",
+          "DisableHibernation",
+          "DisableSwapFile",
+          "DisableWindowArrangement",
+          "DisableStorageSense",
+          "DisableVulnerableDriverBlocklist",
+          "RealTimeIsUniversal",
+          "SkipFirstLogonAnimation",
+          "VerboseStatusMessages",
+          "DisableClipboardHistory",
+          "NoDisplayIdle",
+          "TweakChsIME",
+          "RdpSoftwareRender"
+        ]
+      }
+    },
+
+    { "Task": "SaveRegistry" },
+    { "Task": "BlockSdxHost" },
+
+    { "Task": "CleanupSxsTiny11Core" },
+
+    {
+      "Task": "ExportImage",
+      "Args": {
+        "OutWim": "build\\nadia_win11_ltsc_26100.1742.wim"
+      }
+    }
+  ]
+}

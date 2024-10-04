@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Serilog;
 
-namespace nadia.Presets;
+namespace nadia.Runners;
 
-public class RemoveOneDrive : IPreset
+public class RemoveOneDrive : BaseRunner
 {
-    public required string MountDir;
-
-    public void Run()
+    public override async Task Run(JObject? args)
     {
         Log.Information("removing onedrive");
         FileUtils.TakeOwnAndDelete(Path.Join(MountDir, "Windows", "System32", "OneDriveSetup.exe"));

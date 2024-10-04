@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Serilog;
 
-namespace nadia.Presets;
+namespace nadia.Runners;
 
-public class EnglishToChinese : IAsyncPreset
+public record class EnglishToChineseArgs
 {
-    public required string MountDir;
-    public required string LanguagePackDir;
-    public required string LofIso;
+    public required string LofIso { get; init; }
+}
 
-    public async Task RunAsync()
+public class EnglishToChinese : BaseRunner
+{
+    public required string LanguagePackDir = @"build\language_packs";
+
+    public override async Task Run(JObject? args)
     {
+        var ap = args.ToObject<EnglishToChineseArgs>();
+
         Directory.CreateDirectory(LanguagePackDir);
 
         var languagePacks = new[]
@@ -28,7 +34,7 @@ public class EnglishToChinese : IAsyncPreset
             "Microsoft-Windows-LanguageFeatures-Handwriting-zh-cn-Package~31bf3856ad364e35~amd64~~.cab",
         };
 
-        await IsoUtils.ExtractLanguagePacks(languagePacks, LofIso, LanguagePackDir);
+        await IsoUtils.ExtractLanguagePacks(languagePacks, ap.LofIso, LanguagePackDir);
 
         try
         {

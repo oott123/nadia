@@ -82,6 +82,22 @@ namespace nadia
                 .WaitForExitAsync();
         }
 
+        public static async Task SetEdition(string mountPath, string sku)
+        {
+            var mount = Path.GetFullPath(mountPath);
+
+            Log.Information($"call dism.exe to set edition to {sku}...");
+            await Process
+                .Start(
+                    new ProcessStartInfo()
+                    {
+                        FileName = "dism.exe",
+                        Arguments = $"/Image:\"{mount}\" /Set-Edition:{sku}",
+                    }
+                )!
+                .WaitForExitAsync();
+        }
+
         public static void RemoveLanguagePackages(string mount, string language)
         {
             using (var session = DismApi.OpenOfflineSession(mount))

@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 using Serilog;
 
-namespace nadia.Presets;
+namespace nadia.Runners;
 
-public class RemoveWindowsDefender : IPreset
+public class RemoveWindowsDefender : BaseRunner
 {
-    public required string MountDir;
-    public required OfflineRegistry Registry;
-
-    public void Run()
+    public override async Task Run(JObject? args)
     {
         Log.Information("removing windows defender files");
         FileUtils.TakeOwnAndDelete(Path.Join(MountDir, "Program Files", "Windows Defender"));

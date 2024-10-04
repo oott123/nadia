@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 
-namespace nadia.Presets;
+namespace nadia.Runners;
 
-internal class Tiny11Core : IPreset
+public class Tiny11Core : BaseRunner
 {
-    public required string MountDir;
-    public required OfflineRegistry Registry;
-
-    public void Run()
+    public override async Task Run(JObject? args)
     {
         // Bypassing system requirements(on the system image)
         RegistryUtils.RegSetValue(

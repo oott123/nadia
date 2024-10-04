@@ -14,6 +14,8 @@ namespace nadia
         public required Hive UserDefault { get; init; }
         public required Hive NtUser { get; init; }
 
+        private bool _loaded = false;
+
         public static OfflineRegistry MountRegistry(string mount)
         {
             Log.Information("loading registry");
@@ -35,16 +37,21 @@ namespace nadia
                     Path.Join(mount, "Users", "Default", "ntuser.dat"),
                     "OfflineNtUser"
                 ),
+                _loaded = true,
             };
         }
 
         public void SaveRegistry()
         {
-            Log.Information("saving registry");
-            UserDefault.SaveAndUnload();
-            MachineSoftware.SaveAndUnload();
-            MachineSystem.SaveAndUnload();
-            NtUser.SaveAndUnload();
+            if (_loaded)
+            {
+                Log.Information("saving registry");
+                UserDefault.SaveAndUnload();
+                MachineSoftware.SaveAndUnload();
+                MachineSystem.SaveAndUnload();
+                NtUser.SaveAndUnload();
+                _loaded = false;
+            }
         }
     }
 }

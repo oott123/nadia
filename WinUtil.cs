@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using Serilog;
 
 namespace nadia;
@@ -40,7 +41,9 @@ public record class WinUtilTweakService
                 // winutil uses new lines in there json files, which we don't support.
                 // however, we don't even use any scripts, so it's save to strip all new lines.
                 .Replace("\n", "");
-            var tweaks = JsonSerializer.Deserialize<Dictionary<string, WinUtilTweak>>(configJson);
+            var tweaks = JsonConvert.DeserializeObject<Dictionary<string, WinUtilTweak>>(
+                configJson
+            );
             if (tweaks == null)
             {
                 throw new Exception("Failed to read winutil tweaks.json");
@@ -54,6 +57,8 @@ public record class WinUtilTweakService
                     Log.Warning($"no such tweak: {entry}");
                     continue;
                 }
+
+                Log.Information($"applying tweak: {entry}");
 
                 var ok = false;
 
@@ -136,6 +141,11 @@ public record class WinUtilTweakService
                     ok = true;
                     foreach (var item in tweak.service)
                     {
+                        if (item.Name == null)
+                        {
+                            continue;
+                        }
+
                         int type = 0;
                         if (item.StartupType == "Manual")
                         {
@@ -169,7 +179,12 @@ public record class WinUtilTweakService
                             continue;
                         }
 
-                        RegistryUtils.SetServiceStart(registry, item.Name, type);
+                        var svcName = item.Name;
+                        if (svcName.EndsWith("_*")) // user service; update template instead.
+                        {
+                            svcName = svcName[..^2];
+                        }
+                        RegistryUtils.SetServiceStart(registry, svcName, type);
                     }
                 }
 

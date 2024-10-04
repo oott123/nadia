@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nadia.Presets;
+namespace nadia.Services;
 
-public interface IAsyncPreset
+public class OfflineRegistryProvider
 {
-    public Task RunAsync();
+    public OfflineRegistry? Registry { get; set; } = null;
 }

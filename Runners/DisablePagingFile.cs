@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Serilog;
 
-namespace nadia.Presets;
+namespace nadia.Runners;
 
-public class DisablePagingFile : IPreset
+public class DisablePagingFile : BaseRunner
 {
-    public required OfflineRegistry Registry;
-
-    public void Run()
+    public override async Task Run(JObject? args)
     {
         using var subkey = Registry.MachineSystem.RootKey.OpenSubKey(
             @"ControlSet001\Control\Session Manager\Memory Management",

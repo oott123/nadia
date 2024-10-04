@@ -52,9 +52,25 @@
         "Type": "DWord"
       },
       {
+        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\OOBE",
+        "Name": "SetupDisplayedEula",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
         "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CloudExperienceHost\\Intent\\PersonalDataExport",
         "Name": "PDEShown",
         "Value": "2",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "EndTaskOnTaskbar": {
+    "registry": [
+      {
+        "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\TaskbarDeveloperSettings",
+        "Name": "TaskbarEndTask",
+        "Value": "1",
         "Type": "DWord"
       }
     ]
@@ -103,7 +119,7 @@
       },
       {
         "Name": "pcasvc",
-        "StartupType": "Manual"
+        "StartupType": "Disabled"
       },
       {
         "Name": "camsvc",
@@ -111,6 +127,10 @@
       },
       {
         "Name": "cdpsvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "CDPUsersvc",
         "StartupType": "Disabled"
       },
       {
@@ -128,6 +148,190 @@
       {
         "Name": "OneSyncSvc",
         "StartupType": "Disabled"
+      },
+      {
+        "Name": "BDESVC",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "BITS",
+        "StartupType": "Manual"
+      },
+      {
+        "Name": "DoSVC",
+        "StartupType": "Manual"
+      },
+      {
+        "Name": "DsmSvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "cbdhsvc",
+        "StartupType": "Disabled"
+      }
+    ]
+  },
+  "AllowExecutionPowershell": {
+    "registry": [
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PowerShell\\1\\ShellIds\\Microsoft.PowerShell",
+        "Name": "ExecutionPolicy",
+        "Value": "Unrestricted",
+        "Type": "String"
+      }
+    ]
+  },
+  "DetailedBsod": {
+    "registry": [
+      {
+        "Path": "HKLM:\\System\\ControlSet001\\Control\\CrashControl",
+        "Name": "DisplayParameters",
+        "Value": "1",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "DisableHibernation": {
+    "registry": [
+      {
+        "Path": "HKLM:\\System\\ControlSet001\\Control\\Power",
+        "Name": "HibernateEnabled",
+        "Value": "0",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "DisableSwapFile": {
+    "registry": [
+      {
+        "Path": "HKLM:\\System\\ControlSet001\\Control\\Session Manager\\Memory Management",
+        "Name": "SwapfileControl",
+        "Value": "0",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "DisableWindowArrangement": {
+    "registry": [
+      {
+        "Path": "HKCU:\\Control Panel\\Desktop",
+        "Name": "WindowArrangementActive",
+        "Value": "0",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+        "Name": "MultiTaskingAltTabFilter",
+        "Value": "3",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "DisableStorageSense": {
+    "registry": [
+      {
+        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\StorageSense\\Parameters\\StoragePolicy",
+        "Name": "01",
+        "Value": "0",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "DisableVulnerableDriverBlocklist": {
+    "registry": [
+      {
+        "Path": "HKLM:\\System\\ControlSet001\\Control\\CI\\Config",
+        "Name": "VulnerableDriverBlocklistEnable",
+        "Value": "0",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "RealTimeIsUniversal": {
+    "registry": [
+      {
+        "Path": "HKLM:\\System\\ControlSet001\\Control\\TimeZoneInformation",
+        "Name": "RealTimeIsUniversal",
+        "Value": "1",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "SkipFirstLogonAnimation": {
+    "registry": [
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+        "Name": "EnableFirstLogonAnimation",
+        "Value": "0",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+        "Name": "DelayedDesktopSwitchTimeout",
+        "Value": "0",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "VerboseStatusMessages": {
+    "registry": [
+      {
+        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+        "Name": "VerboseStatus",
+        "Value": "1",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "DisableClipboardHistory": {
+    "registry": [
+      {
+        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Clipboard",
+        "Name": "IsCloudAndHistoryFeatureAvailable",
+        "Value": "0",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "NoDisplayIdle": {
+    "registry": [
+      {
+        "Path": "HKLM:\\Software\\Policies\\Microsoft\\Power\\PowerSettings\\3C0BC021-C8A8-4E07-A973-6B14CBCB2B7E",
+        "Name": "ACSettingIndex",
+        "Value": "0",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "TweakChsIME": {
+    "registry": [
+      {
+        "Path": "HKCU:\\SOFTWARE\\Microsoft\\InputMethod\\Settings\\CHS",
+        "Name": "EnableChineseEnglishPunctuationSwitch",
+        "Value": "0",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKCU:\\SOFTWARE\\Microsoft\\InputMethod\\Settings\\CHS",
+        "Name": "EnableSimplifiedTraditionalOutputSwitch",
+        "Value": "0",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKCU:\\SOFTWARE\\Microsoft\\InputMethod\\Settings\\CHS",
+        "Name": "Enable Cloud Candidate",
+        "Value": "0",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "RdpSoftwareRender": {
+    "registry": [
+      {
+        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\Terminal Services",
+        "Name": "bEnumerateHWBeforeSW",
+        "Value": "1",
+        "Type": "DWord"
       }
     ]
   }
