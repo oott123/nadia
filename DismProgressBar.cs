@@ -17,7 +17,6 @@ namespace nadia
         {
             Console.WriteLine("");
             Console.WriteLine("");
-            Console.WriteLine("");
             progressBar = new ProgressBar(
                 100,
                 message,

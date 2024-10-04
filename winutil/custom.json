@@ -58,6 +58,18 @@
         "Type": "DWord"
       },
       {
+        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\OOBE",
+        "Name": "SetupDisplayedLanguageSelection",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\OOBE",
+        "Name": "SetupDisplayedProductKey",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
         "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\CloudExperienceHost\\Intent\\PersonalDataExport",
         "Name": "PDEShown",
         "Value": "2",

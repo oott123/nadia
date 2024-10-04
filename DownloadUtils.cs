@@ -31,9 +31,6 @@ namespace nadia
             Aria2Downloader.Instance.EnsureProcess();
 
             Thread.Sleep(200);
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
             using var downloadProgress = new ProgressBar(
                 assets.Length,
                 "Downloading Files",

@@ -52,7 +52,6 @@
     },
     {
       "Task": "ApplyVirtioDrivers",
-      "Skip": true,
       "Args": {
         "Iso": "downloads\\virtio-win-0.1.262.iso"
       }
@@ -142,6 +141,8 @@
       "Args": {
         "OutWim": "build\\nadia_win11_ltsc_26100.1742.wim"
       }
-    }
+    },
+
+    { "Task": "Pause" }
   ]
 }

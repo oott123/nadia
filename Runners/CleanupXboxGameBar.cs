@@ -19,12 +19,6 @@ public class CleanupXboxGameBar : BaseRunner
             "0"
         );
         RegistryUtils.RegSetValue(
-            Registry.MachineSoftware,
-            @"Microsoft\WindowsRuntime\ActivatableClassId\Windows.Gaming.GameBar.Prese nceServer.Internal.PresenceWriter",
-            "ActivationType",
-            "0"
-        );
-        RegistryUtils.RegSetValue(
             Registry.NtUser,
             @"SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR",
             "AppCaptureEnabled",

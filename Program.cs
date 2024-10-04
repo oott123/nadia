@@ -141,14 +141,12 @@ class Program
         }
         finally
         {
+            Log.Information("--- cleaning up ---");
             foreach (var d in disposableRunners.Reverse<IDisposable>())
             {
                 d.Dispose();
             }
             DismApi.Shutdown();
         }
-
-        Console.Write("Press enter to continue...");
-        Console.ReadLine();
     }
 }
