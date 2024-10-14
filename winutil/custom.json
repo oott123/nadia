@@ -380,5 +380,107 @@
         "Type": "DWord"
       }
     ]
+  },
+  "MorePins": {
+    "registry": [
+      {
+        "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+        "Name": "Start_Layout",
+        "Value": "1",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "PinnedFolders": {
+    "registry": [
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderSettings",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderSettings_ProviderSet",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderDownloads",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderDownloads_ProviderSet",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderPersonalFolder",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderPersonalFolder_ProviderSet",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderDocuments",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderDocuments_ProviderSet",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderNetwork",
+        "Value": "1",
+        "Type": "DWord"
+      },
+      {
+        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "Name": "AllowPinnedFolderNetwork_ProviderSet",
+        "Value": "1",
+        "Type": "DWord"
+      }
+    ]
+  },
+  "NoStickyToggleMouseFilterKeys": {
+    "registry": [
+      {
+        "Path": "HKCU:\\Control Panel\\Accessibility\\StickyKeys",
+        "Name": "Flags",
+        "Value": "506",
+        "Type": "String"
+      },
+      {
+        "Path": "HKCU:\\Control Panel\\Accessibility\\ToggleKeys",
+        "Name": "Flags",
+        "Value": "62",
+        "Type": "String"
+      },
+      {
+        "Path": "HKCU:\\Control Panel\\Accessibility\\MouseKeys",
+        "Name": "Flags",
+        "Value": "62",
+        "Type": "String"
+      },
+      {
+        "Path": "HKCU:\\Control Panel\\Accessibility\\Keyboard Response",
+        "Name": "Flags",
+        "Value": "122",
+        "Type": "String"
+      }
+    ]
   }
 }

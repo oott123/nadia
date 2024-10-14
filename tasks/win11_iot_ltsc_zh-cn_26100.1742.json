@@ -133,7 +133,10 @@
           "NoDisplayIdle",
           "TweakChsIME",
           "RdpSoftwareRender",
-          "EnableSudo"
+          "EnableSudo",
+          "MorePins",
+          "PinnedFolders",
+          "NoStickyToggleMouseFilterKeys"
         ]
       }
     },
