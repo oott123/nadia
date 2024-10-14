@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+	<settings pass="generalize">
+		<component name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<PersistAllDeviceInstalls>False</PersistAllDeviceInstalls>
+		</component>
+	</settings>
+	<settings pass="oobeSystem">
+		<component name="Microsoft-Windows-International-Core" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<InputLocale>zh-CN</InputLocale>
+			<UILanguage>zh-CN</UILanguage>
+			<UILanguageFallback>zh-CN</UILanguageFallback>
+			<UserLocale>zh-CN</UserLocale>
+			<SystemLocale>zh-CN</SystemLocale>
+		</component>
+		<component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+			<DesktopOptimization>
+				<GoToDesktopOnSignIn>true</GoToDesktopOnSignIn>
+			</DesktopOptimization>
+			<OOBE>
+				<VMModeOptimizations>
+					<SkipAdministratorProfileRemoval>true</SkipAdministratorProfileRemoval>
+					<SkipNotifyUILanguageChange>true</SkipNotifyUILanguageChange>
+					<SkipWinREInitialization>true</SkipWinREInitialization>
+				</VMModeOptimizations>
+				<NetworkLocation>Work</NetworkLocation>
+				<HideEULAPage>true</HideEULAPage>
+				<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+				<ProtectYourPC>3</ProtectYourPC>
+				<UnattendEnableRetailDemo>false</UnattendEnableRetailDemo>
+				<HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+				<HideLocalAccountScreen>true</HideLocalAccountScreen>
+				<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+				<SkipMachineOOBE>true</SkipMachineOOBE>
+				<SkipUserOOBE>true</SkipUserOOBE>
+			</OOBE>
+			<TimeZone>China Standard Time</TimeZone>
+			<Display>
+				<ColorDepth>32</ColorDepth>
+				<HorizontalResolution>1920</HorizontalResolution>
+				<RefreshRate>60</RefreshRate>
+				<VerticalResolution>1080</VerticalResolution>
+			</Display>
+			<ComputerName>*</ComputerName>
+			<UserAccounts>
+				<AdministratorPassword>
+					<Value></Value>
+					<PlainText>true</PlainText>
+				</AdministratorPassword>
+			</UserAccounts>
+			<AutoLogon>
+				<Password>
+					<Value></Value>
+				</Password>
+				<Enabled>true</Enabled>
+				<LogonCount>2147483647</LogonCount>
+				<Username>Administrator</Username>
+			</AutoLogon>
+		</component>
+	</settings>
+	<settings pass="specialize">
+		<component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ExtendOSPartition>
+				<Extend>true</Extend>
+			</ExtendOSPartition>
+		</component>
+	</settings>
+</unattend>

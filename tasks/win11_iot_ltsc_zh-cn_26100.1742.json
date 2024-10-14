@@ -143,6 +143,13 @@
 
     { "Task": "SaveRegistry" },
     { "Task": "BlockSdxHost" },
+    {
+      "Task": "CopyFile",
+      "Args": {
+        "Src": "Panther\\OneClickAdministrator.xml",
+        "Dst": "Windows\\Panther\\Unattend.xml"
+      }
+    },
 
     { "Task": "CleanupSxsTiny11Core" },
 

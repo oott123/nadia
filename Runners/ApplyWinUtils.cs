@@ -25,8 +25,8 @@ public class ApplyWinUtils : BaseRunner
         var ap = args.ToObject<ApplyWinUtilsArgs>();
         var findDirs = new string[]
         {
-            Path.Join(Assembly.GetExecutingAssembly().Location, "..", "winutil"),
             Path.Join(Directory.GetCurrentDirectory(), "winutil"),
+            Path.Join(Assembly.GetExecutingAssembly().Location, "..", "winutil"),
         };
 
         foreach (var dir in findDirs)
