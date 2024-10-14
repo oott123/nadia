@@ -107,7 +107,5 @@ public class CleanupSxsTiny11Core : BaseRunner
         Directory.Move(src, srcBackup);
         Directory.Move(dest, src);
         FileUtils.TakeOwnAndDelete(srcBackup);
-
-        Log.Information("cleaning up image");
     }
 }

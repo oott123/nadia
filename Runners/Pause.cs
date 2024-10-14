@@ -14,12 +14,12 @@ public class Pause : BaseRunner
     {
         if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("CI")))
         {
-            Console.Write("Press enter to continue...");
-            Console.ReadLine();
+            Log.Information("pause is skipped due to CI environment vairable is set");
         }
         else
         {
-            Log.Information("pause is skipped due to CI environment vairable is set");
+            Console.Write("Press enter to continue...");
+            Console.ReadLine();
         }
     }
 }
