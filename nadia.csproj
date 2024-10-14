@@ -23,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Panther\OneClickAdministrator.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="tasks\win11_iot_ltsc_zh-cn_26100.1742.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
