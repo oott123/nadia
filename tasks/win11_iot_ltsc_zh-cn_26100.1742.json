@@ -51,6 +51,12 @@
       }
     },
     {
+      "Task": "AddDotNetFx35",
+      "Args": {
+        "Iso": "downloads\\windows11_ltsc_26100.1742_zh-cn.iso"
+      }
+    },
+    {
       "Task": "ApplyVirtioDrivers",
       "Args": {
         "Iso": "downloads\\virtio-win-0.1.262.iso"
@@ -126,7 +132,8 @@
           "DisableClipboardHistory",
           "NoDisplayIdle",
           "TweakChsIME",
-          "RdpSoftwareRender"
+          "RdpSoftwareRender",
+          "EnableSudo"
         ]
       }
     },

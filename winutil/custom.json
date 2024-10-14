@@ -370,5 +370,15 @@
         "Type": "DWord"
       }
     ]
+  },
+  "EnableSudo": {
+    "registry": [
+      {
+        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Sudo",
+        "Name": "Enabled",
+        "Value": "3",
+        "Type": "DWord"
+      }
+    ]
   }
 }
