@@ -180,6 +180,30 @@
       {
         "Name": "cbdhsvc",
         "StartupType": "Disabled"
+      },
+      {
+        "Name": "CloudBackupRestoreSvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "bthserv",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "BTAGService",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "WinHttpAutoProxySvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "wscsvc",
+        "StartupType": "Disabled"
+      },
+      {
+        "Name": "PushToInstall",
+        "StartupType": "Disabled"
       }
     ]
   },
