@@ -440,18 +440,6 @@
         "Name": "AllowPinnedFolderDocuments_ProviderSet",
         "Value": "1",
         "Type": "DWord"
-      },
-      {
-        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
-        "Name": "AllowPinnedFolderNetwork",
-        "Value": "1",
-        "Type": "DWord"
-      },
-      {
-        "Path": "HKLM:\\Software\\Microsoft\\PolicyManager\\current\\device\\Start",
-        "Name": "AllowPinnedFolderNetwork_ProviderSet",
-        "Value": "1",
-        "Type": "DWord"
       }
     ]
   },
