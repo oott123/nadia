@@ -57,6 +57,24 @@
       }
     },
     {
+      "Task": "EnableFeature",
+      "Args": {
+        "Name": "Client-DeviceLockdown"
+      }
+    },
+    {
+      "Task": "EnableFeature",
+      "Args": {
+        "Name": "Client-UnifiedWriteFilter"
+      }
+    },
+    {
+      "Task": "EnableFeature",
+      "Args": {
+        "Name": "Client-ProjFS"
+      }
+    },
+    {
       "Task": "ApplyVirtioDrivers",
       "Args": {
         "Iso": "downloads\\virtio-win-0.1.262.iso"

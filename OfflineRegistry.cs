@@ -14,7 +14,7 @@ namespace nadia
         public required Hive UserDefault { get; init; }
         public required Hive NtUser { get; init; }
 
-        private bool _loaded = false;
+        private bool _loaded = true;
 
         public static OfflineRegistry MountRegistry(string mount)
         {
