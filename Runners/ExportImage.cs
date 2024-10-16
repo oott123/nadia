@@ -20,7 +20,6 @@ public class ExportImage : BaseRunner
     {
         var ap = args.ToObject<ExportImageArgs>();
 
-        await DismUtils.CleanupImage(MountDir);
         DismUtils.UnmountWim(MountDir, true);
         await DismUtils.RebuildImage(MountProvider.SourceWim, ap.OutWim, MountProvider.WimIndex);
         File.Delete(MountProvider.SourceWim);
