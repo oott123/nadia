@@ -77,6 +77,8 @@ class Program
             return;
         }
 
+        Log.Information($"Loading task file: {taskFile}");
+
         var task = JsonConvert.DeserializeObject<TaskDefinition>(File.ReadAllText(taskFile));
         var steps = task.Steps.Where(s => s.Skip == null || s.Skip == false);
 
@@ -95,6 +97,14 @@ class Program
         var ok = true;
         foreach (var step in steps)
         {
+            if (step.Skip == true)
+            {
+                Log.Information($"Required skipped step: {step.Task}...");
+            }
+            else
+            {
+                Log.Information($"Required step: {step.Task}");
+            }
             if (!runners.ContainsKey(step.Task))
             {
                 Log.Error($"no such task: {step.Task}");
@@ -123,6 +133,11 @@ class Program
 
             foreach (var step in steps)
             {
+                if (step.Skip == true)
+                {
+                    Log.Information($"skipping task {step.Task}...");
+                    continue;
+                }
                 Log.Information($"processing {step.Task}...");
                 var runnerInstance = container.Resolve(runners[step.Task]) as BaseRunner;
                 if (runnerInstance == null)

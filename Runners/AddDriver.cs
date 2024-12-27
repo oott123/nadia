@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using DiscUtils.Iso9660;
+using DiscUtils.Udf;
 using Microsoft.Dism;
 using Newtonsoft.Json.Linq;
 using Serilog;
 
 namespace nadia.Runners;
 
-public record class EnableFeatureArgs
+public record class AddDriverArgs
 {
-    public required string Name { get; init; }
+    public required string Inf { get; init; }
 }
 
-public class EnableFeature : BaseRunner
+public class AddDriver : BaseRunner
 {
     public override async Task Run(JObject? args)
     {
-        var ap = args.ToObject<EnableFeatureArgs>();
-        Log.Information($"feature name: {ap.Name}");
+        var ap = args.ToObject<AddDriverArgs>();
+        Log.Information($"adding driver {ap.Inf} into image");
         using var session = DismApi.OpenOfflineSession(MountDir);
-        DismApi.EnableFeature(session, ap.Name, true, true);
+        DismApi.AddDriver(session, ap.Inf, true);
     }
 }

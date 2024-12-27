@@ -168,6 +168,9 @@
         "Dst": "Windows\\Panther\\Unattend.xml"
       }
     },
+
+   { "Task": "CleanupSxsTiny11Core", "Skip": true },
+
     {
       "Task": "ExportImage",
       "Args": {
