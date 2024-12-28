@@ -139,11 +139,11 @@
       },
       {
         "Name": "cdpsvc",
-        "StartupType": "Disabled"
+        "StartupType": "Manual"
       },
       {
         "Name": "CDPUsersvc",
-        "StartupType": "Disabled"
+        "StartupType": "Manual"
       },
       {
         "Name": "InventorySvc",

@@ -98,6 +98,22 @@ namespace nadia
                 .WaitForExitAsync();
         }
 
+        public static async Task ImportDefaultAppAssociations(string mountPath, string xml)
+        {
+            var mount = Path.GetFullPath(mountPath);
+
+            Log.Information($"call dism.exe to import default app associations {xml}...");
+            await Process
+                .Start(
+                    new ProcessStartInfo()
+                    {
+                        FileName = "dism.exe",
+                        Arguments = $"/Image:\"{mount}\" /Import-DefaultAppAssociations:{xml}",
+                    }
+                )!
+                .WaitForExitAsync();
+        }
+
         public static void RemoveLanguagePackages(string mount, string language)
         {
             using (var session = DismApi.OpenOfflineSession(mount))

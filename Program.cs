@@ -53,8 +53,8 @@ class Program
         var taskFile = "";
         var findDirs = new string[]
         {
-            Path.Join(Assembly.GetExecutingAssembly().Location, "..", "tasks"),
             Path.Join(Directory.GetCurrentDirectory(), "tasks"),
+            Path.Join(Assembly.GetExecutingAssembly().Location, "..", "tasks"),
         };
 
         foreach (var dir in findDirs)

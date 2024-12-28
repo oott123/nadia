@@ -36,9 +36,55 @@ public class CopyFile : BaseRunner
                 Directory.CreateDirectory(dest);
                 Log.Information($"copying {file} to {ap.Dst}");
 
-                File.Copy(file, Path.Join(MountDir, ap.Dst));
+                File.Copy(file, Path.Join(MountDir, ap.Dst), true);
                 break;
             }
+            else if (Directory.Exists(file))
+            {
+                var dest = Path.Join(MountDir, ap.Dst);
+                Directory.CreateDirectory(dest);
+                Log.Information($"copying directory {file} to {ap.Dst}");
+                DirectoryCopy(file, dest);
+            }
+        }
+    }
+
+    private static void DirectoryCopy(
+        string sourceBasePath,
+        string destinationBasePath,
+        bool recursive = true
+    )
+    {
+        if (!Directory.Exists(sourceBasePath))
+            throw new DirectoryNotFoundException($"Directory '{sourceBasePath}' not found");
+
+        var directoriesToProcess = new Queue<(string sourcePath, string destinationPath)>();
+        directoriesToProcess.Enqueue(
+            (sourcePath: sourceBasePath, destinationPath: destinationBasePath)
+        );
+        while (directoriesToProcess.Any())
+        {
+            (string sourcePath, string destinationPath) = directoriesToProcess.Dequeue();
+
+            if (!Directory.Exists(destinationPath))
+                Directory.CreateDirectory(destinationPath);
+
+            var sourceDirectoryInfo = new DirectoryInfo(sourcePath);
+            foreach (FileInfo sourceFileInfo in sourceDirectoryInfo.EnumerateFiles())
+                sourceFileInfo.CopyTo(Path.Combine(destinationPath, sourceFileInfo.Name), true);
+
+            if (!recursive)
+                continue;
+
+            foreach (
+                DirectoryInfo sourceSubDirectoryInfo in sourceDirectoryInfo.EnumerateDirectories()
+            )
+                directoriesToProcess.Enqueue(
+                    (
+                        sourcePath: sourceSubDirectoryInfo.FullName,
+                        destinationPath: Path.Combine(destinationPath, sourceSubDirectoryInfo.Name)
+                    )
+                );
         }
     }
 }
